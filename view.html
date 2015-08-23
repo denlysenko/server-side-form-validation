@@ -1,0 +1,40 @@
+<form name="form" novalidate ng-submit="submit()">
+  <div class="form-group">
+    <label for="">Field 1</label>
+    <input type="text" class="form-control" name="code" ng-model="dataType.code" required>
+    <div class="text-danger" ng-show="form.code.$dirty && form.code.$error.required">Required</div>
+    <div class="text-danger" ng-show="form.code.$dirty && form.code.$error.serverError">{{serverErrors.code}}</div>
+  </div>
+  <div class="form-group">
+    <label for="">Field 2</label>
+    <input type="text" class="form-control" name="caption" ng-model="dataType.caption">
+    <div class="text-danger" ng-show="form.caption.$dirty && form.caption.$error.required">Required</div>
+    <div class="text-danger" ng-show="form.caption.$dirty && form.caption.$error.serverError">{{serverErrors.caption}}</div>
+  </div>
+  <fieldset ng-form="attrForm_{{$index}}" ng-repeat="attr in dataType.attributeList track by $index" >
+    <div class="form-group">
+      <label for="">Field 3</label>
+      <input type="text" class="form-control" name="attrCode" ng-model="attr.attrCode">
+      <div class="text-danger" ng-show="attrForm_{{$index}}.attrCode.$dirty && attrForm_{{$index}}.attrCode.$error.required">Required</div>
+      <div class="text-danger" ng-show="attrForm_{{$index}}.attrCode.$dirty && attrForm_{{$index}}.attrCode.$error.serverError">{{serverErrors['attrForm_' + $index + '_attrCode']}}</div>
+    </div>
+    <div class="form-group">
+      <label for="">Field 4</label>
+      <input type="text" class="form-control" name="attrType" ng-model="attr.attrType" required>
+      <div class="text-danger" ng-show="attrForm_{{$index}}.attrType.$dirty && attrForm_{{$index}}.attrType.$error.required">Required</div>
+      <div class="text-danger" ng-show="attrForm_{{$index}}.attrType.$dirty && attrForm_{{$index}}.attrType.$error.serverError">{{serverErrors['attrForm_' + $index + '_attrType']}}</div>
+    </div>
+    <div class="form-group">
+      <label for="">Field 5</label>
+      <input type="text" name="attrCaption" class="form-control" ng-model="attr.attrCaption">
+      <div class="text-danger" ng-show="attrForm_{{$index}}.attrCaption.$dirty && attrForm_{{$index}}.attrCaption.$error.required">Required</div>
+      <div class="text-danger" ng-show="attrForm_{{$index}}.attrCaption.$dirty && attrForm_{{$index}}.attrCaption.$error.serverError">{{serverErrors['attrForm_' + $index + '_attrCaption']}}</div>
+    </div>
+  </fieldset>
+  <div class="form-group">
+    <button type="button" class="btn btn-default" ng-click="add()">Add</button>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" ng-disabled="form.$pristine || form.$invalid">Submit</button>
+  </div>
+</form>
